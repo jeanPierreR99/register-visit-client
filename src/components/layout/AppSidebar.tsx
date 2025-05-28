@@ -16,10 +16,17 @@ import useStoreLogin from "@/features/login/store/useStoreLogin"
 export function AppSidebar() {
     const { name, office, sede, role } = useStoreLogin();
 
+    const nameSplit = () => {
+        const nameAux = name.trim().toUpperCase().split(" ");
+        const first = nameAux[0]?.[0] ?? "A";
+        const second = nameAux[1]?.[0] ?? "A";
+        return (first + second) || "A";
+    };
+
 
     const itemsAssists = [
         {
-            title: "Home",
+            title: "Inicio",
             url: "/",
             icon: Home,
             visible: true,
@@ -31,7 +38,7 @@ export function AppSidebar() {
             visible: role === "Asistente" || role === "Administrador",
         },
         {
-            title: "Otras visitas",
+            title: "Visitas",
             url: "visits-auxs",
             icon: CalendarDays,
             visible: role !== "Administrador" && role !== "Asistente",
@@ -67,7 +74,7 @@ export function AppSidebar() {
         <Sidebar>
             <SidebarContent>
                 <div className="w-full text-center max-h-[220px] py-2 px-5 mb-4 flex flex-col items-center">
-                    <span className="font-black w-20 h-20 text-4xl flex items-center justify-center bg-green-500 text-white rounded-full">A</span>
+                    <span className="font-black w-20 h-20 text-4xl flex items-center justify-center bg-green-500 text-white rounded-full">{nameSplit()}</span>
                     <span className="text-sm font-black">{name}</span>
                     <span className="text-sm text-gray-400">{office} - {sede}</span>
                 </div>

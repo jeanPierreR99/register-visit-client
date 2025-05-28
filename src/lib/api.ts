@@ -12,7 +12,7 @@ const api = axios.create({
     },
 });
 
-const user = getStorage();
+export const user = getStorage();
 
 export const API = {
     //SEDES

@@ -122,3 +122,15 @@
 button{
   cursor: pointer;
 }
+
+.background-image {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('./background-image.jpg');
+  background-size: cover;
+  background-position: center;
+  /* object-fit:contain; */
+  /* opacity: 0.3; */
+  /* z-index: 0; */
+}

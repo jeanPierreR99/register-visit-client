@@ -14,6 +14,7 @@ import { API, API_UPLOAD } from "@/lib/api";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { TooltipWrapper } from "@/components/TooltipWrapper";
 import { useParams } from "react-router-dom";
+import { DateRangePicker } from "./components/DateRangePicker";
 
 const ObservationOffice = () => {
     const { id } = useParams();
@@ -67,6 +68,7 @@ const ObservationOffice = () => {
                 <p className="font-black">{name}</p>
                 <p>{sede}</p>
             </div>}
+            <DateRangePicker id={id} />
             <div className="flex justify-between items-center flex-wrap gap-2">
                 <div className="flex items-center gap-2">
                     <label htmlFor="perPage" className="text-sm">Mostrar:</label>
@@ -148,7 +150,7 @@ const ObservationOffice = () => {
                                     <td className="px-4 py-2 max-w-[220px]">{`${record.functionary?.office?.name || ""} - ${record.functionary?.office?.floor || ""} (${record.functionary?.office?.sede?.name || "s/o"})`}</td>
                                     <td className="px-4 py-2">{new Date(record.check_in_time).toLocaleTimeString()}</td>
                                     <td className="px-4 py-2">{record.check_out_time ? new Date(record.check_out_time).toLocaleTimeString() : "____"}</td>
-                                    <td className="px-4 py-2 flex gap-2 justify-end">
+                                    <td className="px-4 py-2 text-end">
 
                                         <TooltipWrapper content="Eliminar Visita">
                                             <Button

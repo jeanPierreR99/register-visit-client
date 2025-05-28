@@ -204,39 +204,41 @@ const Visit = () => {
                                     <td className="px-4 py-2 max-w-[220px]">{`${record.functionary?.office?.name} - ${record.functionary?.office?.floor} (${record.functionary?.office?.sede?.name})`}</td>
                                     <td className="px-4 py-2">{new Date(record.check_in_time).toLocaleTimeString()}</td>
                                     <td className="px-4 py-2">{record.check_out_time ? new Date(record.check_out_time).toLocaleTimeString() : "____"}</td>
-                                    <td className="px-4 py-2 flex gap-2 justify-end">
-                                        {
-                                            !record.check_out_time && <TooltipWrapper content="Marcar Salida">
+                                    <td className="px-4 py-2">
+                                        <div className="flex gap-2">
+                                            {
+                                                !record.check_out_time && <TooltipWrapper content="Marcar Salida">
+                                                    <Button
+                                                        variant="outline"
+                                                        size="icon"
+                                                        onClick={() => handleUpdateOut(record.id!)}
+                                                    >
+                                                        <Check className="w-4 h-4 text-green-400" />
+                                                    </Button>
+                                                </TooltipWrapper>
+                                            }
+                                            <TooltipWrapper content="Editar Visita">
                                                 <Button
                                                     variant="outline"
                                                     size="icon"
-                                                    onClick={() => handleUpdateOut(record.id!)}
+                                                    onClick={() => {
+                                                        setSelectedSede(record);
+                                                        setIsModalOpen(true);
+                                                    }}
                                                 >
-                                                    <Check className="w-4 h-4 text-green-400" />
+                                                    <Edit className="w-4 h-4 text-orange-400" />
                                                 </Button>
                                             </TooltipWrapper>
-                                        }
-                                        <TooltipWrapper content="Editar Visita">
-                                            <Button
-                                                variant="outline"
-                                                size="icon"
-                                                onClick={() => {
-                                                    setSelectedSede(record);
-                                                    setIsModalOpen(true);
-                                                }}
-                                            >
-                                                <Edit className="w-4 h-4 text-orange-400" />
-                                            </Button>
-                                        </TooltipWrapper>
-                                        <TooltipWrapper content="Eliminar Visita">
-                                            <Button
-                                                variant="destructive"
-                                                size="icon"
-                                                onClick={() => handleDelete(record.id!)}
-                                            >
-                                                <Trash2 className="w-4 h-4" />
-                                            </Button>
-                                        </TooltipWrapper>
+                                            <TooltipWrapper content="Eliminar Visita">
+                                                <Button
+                                                    variant="destructive"
+                                                    size="icon"
+                                                    onClick={() => handleDelete(record.id!)}
+                                                >
+                                                    <Trash2 className="w-4 h-4" />
+                                                </Button>
+                                            </TooltipWrapper>
+                                        </div>
                                     </td>
                                 </tr>
                             ))

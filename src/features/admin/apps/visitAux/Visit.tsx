@@ -10,12 +10,13 @@ import {
     PaginationPrevious
 } from "@/components/ui/pagination";
 import { IVisit } from "@/lib/interface";
-import { API, API_UPLOAD } from "@/lib/api";
+import { API, API_UPLOAD, user } from "@/lib/api";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { VisitModal } from "./components/VisitModal";
 import useStoreLogin from "@/features/login/store/useStoreLogin";
 import { TooltipWrapper } from "@/components/TooltipWrapper";
 import { AlertWrapper } from "@/components/AlertWrapper";
+import { DateRangePicker } from "../../register/observationOffice/components/DateRangePicker";
 
 const Functionary = () => {
     const [records, setRecords] = useState<IVisit[]>([]);
@@ -123,6 +124,7 @@ const Functionary = () => {
             >
                 <Plus className="w-4 h-4 mr-2" /> Nueva Visita
             </Button>
+            <DateRangePicker id={user.office.id} />
 
             {message && <AlertWrapper type={message.type} title={message.title} description={message.description} />}
 
@@ -203,42 +205,46 @@ const Functionary = () => {
                                     <td className="px-4 py-2">{record.description}</td>
                                     <td className="px-4 py-2">{new Date(record.check_in_time).toLocaleTimeString()}</td>
                                     <td className="px-4 py-2">{record.check_out_time ? new Date(record.check_out_time).toLocaleTimeString() : "____"}</td>
-                                    <td className="px-4 py-2 flex gap-2 justify-end">
-                                        {
-                                            !record.check_out_time && <TooltipWrapper content="Marcar Salida">
+                                    <td className="px-4 py-2">
+                                        <div className="flex gap-2">
+                                            {
+                                                !record.check_out_time && <TooltipWrapper content="Marcar Salida">
+                                                    <Button
+                                                        variant="outline"
+                                                        size="icon"
+                                                        onClick={() => handleUpdateOut(record.id!)}
+                                                    >
+                                                        <Check className="w-4 h-4 text-green-400" />
+                                                    </Button>
+                                                </TooltipWrapper>
+                                            }
+                                            <TooltipWrapper content="Editar Visita">
                                                 <Button
                                                     variant="outline"
                                                     size="icon"
-                                                    onClick={() => handleUpdateOut(record.id!)}
+                                                    onClick={() => {
+                                                        setSelectedSede(record);
+                                                        setIsModalOpen(true);
+                                                    }}
                                                 >
-                                                    <Check className="w-4 h-4 text-green-400" />
+                                                    <Edit className="w-4 h-4 text-orange-400" />
                                                 </Button>
                                             </TooltipWrapper>
-                                        }
-                                        <TooltipWrapper content="Editar Visita">
-                                            <Button
-                                                variant="outline"
-                                                size="icon"
-                                                onClick={() => {
-                                                    setSelectedSede(record);
-                                                    setIsModalOpen(true);
-                                                }}
-                                            >
-                                                <Edit className="w-4 h-4 text-orange-400" />
-                                            </Button>
-                                        </TooltipWrapper>
-                                        <TooltipWrapper content="Eliminar Visita">
-                                            <Button
-                                                variant="destructive"
-                                                size="icon"
-                                                onClick={() => handleDelete(record.id!)}
-                                            >
-                                                <Trash2 className="w-4 h-4 " />
-                                            </Button>
-                                        </TooltipWrapper>
+                                            <TooltipWrapper content="Eliminar Visita">
+                                                <Button
+                                                    variant="destructive"
+                                                    size="icon"
+                                                    onClick={() => handleDelete(record.id!)}
+                                                >
+                                                    <Trash2 className="w-4 h-4 " />
+                                                </Button>
+                                            </TooltipWrapper>
+                                        </div>
                                     </td>
                                 </tr>
+
                             ))
+
                         ) : (
                             <tr>
                                 <td colSpan={9} className="text-center py-4 text-gray-500">

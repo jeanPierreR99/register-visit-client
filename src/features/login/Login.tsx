@@ -57,8 +57,8 @@ const Login = () => {
 
     return (
         <div className="grid h-[100dvh] bg-gray-50 grid-cols-1 md:grid-cols-2">
-            <div className="hidden md:flex items-center justify-center bg-white">
-                <img src="./background-image.svg" alt="Login Illustration" className="object-contain w-full h-[50vh] animate-fade-in" />
+            <div className="hidden relative md:flex items-center justify-center bg-white">
+                <div className="background-image"></div>
             </div>
 
             <div className="flex items-center justify-center p-8 sm:p-4 bg-white md:bg-transparent">
