@@ -50,12 +50,30 @@ const User = () => {
             const { sedeId, ...userData } = data;
             await API.createUser(userData);
             fetchData();
-            setMessage({ type: "success", title: "Operación exitosa", description: "Se llevo a cabo la solicitud, Creado" })
-        } catch (err) {
-            setMessage({ type: "error", title: "Ocurrio un error", description: "No se pudo llevar a cabo la solicitud" })
-            console.error("Error al eliminar sede:", err);
+            setMessage({
+                type: "success",
+                title: "Operación exitosa",
+                description: "El usuario ha sido registrado correctamente.",
+            });
+        } catch (err: any) {
+            if (err.response?.status === 409) {
+                setMessage({
+                    type: "info",
+                    title: "Advertencia",
+                    description: "El correo ya está registrado. Por favor, usa otro.",
+                });
+                return;
+            }
+
+            setMessage({
+                type: "error",
+                title: "Ocurrió un error",
+                description: "No se pudo completar el registro del usuario.",
+            });
+            console.error("Error:", err);
         }
     };
+
 
     const handleUpdate = async (data: IUser) => {
         try {
@@ -65,7 +83,7 @@ const User = () => {
             setMessage({ type: "success", title: "Operación exitosa", description: "Se llevo a cabo la solicitud, actulizado" })
         } catch (err) {
             setMessage({ type: "error", title: "Ocurrio un error", description: "No se pudo llevar a cabo la solicitud" })
-            console.error("Error al eliminar sede:", err);
+            console.error("Error:", err);
         }
     };
 
@@ -76,7 +94,7 @@ const User = () => {
             setMessage({ type: "success", title: "Operación exitosa", description: "Se llevo a cabo la solicitud, eliminada" })
         } catch (err) {
             setMessage({ type: "error", title: "Ocurrio un error", description: "No se pudo llevar a cabo la solicitud" })
-            console.error("Error al eliminar sede:", err);
+            console.error("Error:", err);
         }
     };
 

@@ -24,9 +24,9 @@ export function AlertWrapper({ type, title, description }: AlertWrapperProps) {
             text: "text-red-600",
         },
         info: {
-            icon: <Info className="h-4 w-4 !text-blue-600" />,
-            bg: "bg-blue-100 border-blue-300",
-            text: "text-blue-600",
+            icon: <Info className="h-4 w-4 !text-yellow-600" />,
+            bg: "bg-yellow-100 border-yellow-300",
+            text: "text-yellow-600",
         },
     }[type];
 

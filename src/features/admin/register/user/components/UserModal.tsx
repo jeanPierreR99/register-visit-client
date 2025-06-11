@@ -48,10 +48,10 @@ interface Role {
 
 const schema = z.object({
     name: z.string().min(1, "El nombre es obligatorio"),
-    user: z.string().min(1, "El usuario es obligatorio"),
+    user: z.string().email("Debe ser un email válido"),
     password_hash: z.string().min(1, "La contraseña es obligatoria"),
-    sedeId: z.string().optional(),
-    officeId: z.string().optional(),
+    sedeId: z.string().min(1, "La sede es obligatorio"),
+    officeId: z.string().min(1, "La oficina es obligatorio"),
     roleId: z.string().min(1, "El rol es obligatorio"),
 });
 
@@ -159,33 +159,34 @@ export const UserModal = ({
                                 </FormItem>
                             )}
                         />
-                        <FormField
-                            control={form.control}
-                            name="user"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Usuario</FormLabel>
-                                    <FormControl>
-                                        <Input {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="password_hash"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Contraseña</FormLabel>
-                                    <FormControl>
-                                        <Input type="password" placeholder="*****" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-
+                        <div className="grid grid-cols-2 gap-4">
+                            <FormField
+                                control={form.control}
+                                name="user"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Email</FormLabel>
+                                        <FormControl>
+                                            <Input {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="password_hash"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Contraseña</FormLabel>
+                                        <FormControl>
+                                            <Input type="password" placeholder="*****" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
                         <FormField
                             control={form.control}
                             name="sedeId"

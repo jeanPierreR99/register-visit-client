@@ -5,6 +5,9 @@ import { getStorage } from "./functions";
 export const API_BASE = "http://localhost:3000/api/v1";
 export const API_UPLOAD = "http://localhost:3000";
 
+// export const API_BASE = "http://172.16.1.249:81//api/v1";
+// export const API_UPLOAD = "http://172.16.1.249:81/";
+
 const api = axios.create({
     baseURL: API_BASE,
     headers: {

@@ -105,7 +105,7 @@ const TablePending = ({ getDashboard }: any) => {
                             <th className="px-4 py-3 border">Fecha</th>
                             <th className="px-4 py-3 border">Visitante</th>
                             <th className="px-4 py-3 border">Motivo</th>
-                            <th className="px-4 py-3 border">Descriptción</th>
+                            <th className="px-4 py-3 border">Oficina</th>
                             <th className="px-4 py-3 border">Hora de entrada</th>
                             <th className="px-4 py-3 border">Hora de salida</th>
                             <th className="px-4 py-3 border text-center">Acciones</th>
@@ -139,7 +139,7 @@ const TablePending = ({ getDashboard }: any) => {
                                     <td className="px-4 py-2">{record.description}</td>
                                     <td className="px-4 py-2">{new Date(record.check_in_time).toLocaleTimeString()}</td>
                                     <td className="px-4 py-2">{record.check_out_time ? new Date(record.check_out_time).toLocaleTimeString() : "____"}</td>
-                                    <td className="px-4 py-2 text-center flex gap-2 justify-center">
+                                    <td className="text-center">
                                         {
                                             !record.check_out_time && <TooltipWrapper content="Marcar Salida">
                                                 <Button

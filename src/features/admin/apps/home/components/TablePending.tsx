@@ -141,7 +141,7 @@ const TablePending = ({ getDashboard }: any) => {
                                     <td className="px-4 py-2">{`${record.functionary?.office?.name} - ${record.functionary?.office?.floor} (${record.functionary?.office?.sede?.name})`}</td>
                                     <td className="px-4 py-2">{new Date(record.check_in_time).toLocaleTimeString()}</td>
                                     <td className="px-4 py-2">{record.check_out_time ? new Date(record.check_out_time).toLocaleTimeString() : "____"}</td>
-                                    <td className="px-4 py-2 text-center flex gap-2 justify-center">
+                                    <td className="text-center">
                                         {
                                             !record.check_out_time && <TooltipWrapper content="Marcar Salida">
                                                 <Button

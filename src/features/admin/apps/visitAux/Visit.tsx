@@ -171,7 +171,7 @@ const Functionary = () => {
                             <th className="px-4 py-3 border">Fecha</th>
                             <th className="px-4 py-3 border">Visitante</th>
                             <th className="px-4 py-3 border">Motivo</th>
-                            <th className="px-4 py-3 border">Descripción</th>
+                            <th className="px-4 py-3 border">Oficina</th>
                             <th className="px-4 py-3 border">Hora de entrada</th>
                             <th className="px-4 py-3 border">Hora de salida</th>
                             <th className="px-4 py-3 border text-center">Acciones</th>

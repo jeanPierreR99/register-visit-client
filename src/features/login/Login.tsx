@@ -31,7 +31,6 @@ const Login = () => {
         try {
             setLoading(true);
             const response = await API.loginUser(user);
-            console.log(response)
             const userData = response.data;
             saveStorage(userData);
             login(
